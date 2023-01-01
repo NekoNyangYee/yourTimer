@@ -73,7 +73,7 @@ export default function Controls(props: Props) {
 
     const handlePlayBtn = () => {
         const interval: any = setInterval(() => {
-            setTimeinSec((previousState: number) => previousState + 1)
+            setTimeinSec((previousState: number) => previousState + 1);
         }, 1000)
         setIntervalId(interval);
         setShow(!show);

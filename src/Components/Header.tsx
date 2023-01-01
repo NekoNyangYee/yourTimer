@@ -15,7 +15,7 @@ const MenuBtn = styled.button`
   background: none;
   cursor: pointer;
   @media screen and (max-width: 820px) {
-    left: 20px;
+    left: 15px;
   }
 `;
 
@@ -84,6 +84,9 @@ height: 40px;
 margin: 4px 0 0 0;
 left: 86%;
 border-radius: 50px;
+@media screen and (max-width: 820px) {
+  left: 82%;
+}
 `
 const MenuBg = styled.div`
 z-index: 20;
@@ -97,6 +100,9 @@ display: none;
   background-color : rgb(0,0,0,0.5);
   backdrop-filter: blur(10px);
 }
+`
+const LinkIcon = styled.a`
+color: ${({ theme }: { theme: any }) => theme.textColor}
 `
 
 export const Header = () => {
@@ -121,39 +127,41 @@ export const Header = () => {
   };
 
   return (
-    <><ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <GlobalStyle />
-      <MenuBg onClick={clickMenu} data-isopen={menu ? "true" : "false"} />
-      <MenuBtn onClick={clickMenu}>
-        {theme === 'light' ? <img src="./img/hamburger.svg" /> : <img src="./img/hamburger_inDark.svg" />}
-      </MenuBtn>
-      <ThemeBtn onClick={toggleTheme}>
-        {theme === 'light' ? <img src="./img/Darkmode.svg" /> : <img src="./img/Light_inDark.svg" />}
-      </ThemeBtn>
-      <MenuBar data-isopen={menu ? "true" : "false"}>
-        <CancelBtn onClick={clickMenu}>
-          {theme === 'light' ? <img src="./img/cancel.svg" /> : <img src="./img/cancel_inDark.svg" />}
-        </CancelBtn>
-        <IconLogo>
-          <img src="./img/icon.svg" />
-        </IconLogo>
-        <AppName>너의 타이머를 부탁해!!</AppName>
-        <p>버전 1.0.0</p>
-        <MenuOption>
-          <MenuList>
-            {theme === 'light' ? <BellAlert src="./img/Bell.svg" /> : <BellAlert src="./img/Bell_inDark.svg" />}
-            <p>공지사항</p>
-          </MenuList>
-
-        </MenuOption>
-        <MyPage>
-          <AiFillGithub
-            fontSize={35}
-            style={{ padding: "20px" }}
-          />
-        </MyPage>
-      </MenuBar>
-    </ThemeProvider>
+    <>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyle />
+        <MenuBg onClick={clickMenu} data-isopen={menu ? "true" : "false"} />
+        <MenuBtn onClick={clickMenu}>
+          {theme === 'light' ? <img src="./img/hamburger.svg" /> : <img src="./img/hamburger_inDark.svg" />}
+        </MenuBtn>
+        <ThemeBtn onClick={toggleTheme}>
+          {theme === 'light' ? <img src="./img/Darkmode.svg" /> : <img src="./img/Light_inDark.svg" />}
+        </ThemeBtn>
+        <MenuBar data-isopen={menu ? "true" : "false"}>
+          <CancelBtn onClick={clickMenu}>
+            {theme === 'light' ? <img src="./img/Cancel.svg" /> : <img src="./img/Cancel_Dark.svg" />}
+          </CancelBtn>
+          <IconLogo>
+            <img src="./img/icon.svg" />
+          </IconLogo>
+          <AppName>너의 타이머를 부탁해!!</AppName>
+          <p>버전 1.0.0</p>
+          <MenuOption>
+            <MenuList>
+              {theme === 'light' ? <BellAlert src="./img/Bell.svg" /> : <BellAlert src="./img/Bell_inDark.svg" />}
+              <p>공지사항</p>
+            </MenuList>
+          </MenuOption>
+          <MyPage>
+            <LinkIcon href="https://github.com/NekoNyangYee/yourtimer">
+              <AiFillGithub
+                fontSize={35}
+                style={{ padding: "20px" }}
+              />
+            </LinkIcon>
+          </MyPage>
+        </MenuBar>
+      </ThemeProvider>
 
     </>
   );
