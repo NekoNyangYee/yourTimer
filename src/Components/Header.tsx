@@ -5,7 +5,7 @@ import { GlobalStyle } from '../Theme/global-style';
 import { AiFillGithub } from "react-icons/ai";
 
 const MenuBtn = styled.button`
-  z-index: 99;
+  z-index: 9;
   position: absolute;
   left: 120px;
   margin: 10px;
@@ -23,18 +23,26 @@ const MenuBar = styled.div`
   z-index: 99;
   position: absolute;
   width: 380px;
-  height: 100%;
+  height: 0;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  border-radius: 0 12px 12px 0;
+  border-radius: 12px;
   background: ${({ theme }: { theme: any }) => theme.barColor};
-  transform: translate(-380px, 0);
-  transition: all 0.3s ease-out;
+  transform: translate(55%, 100vh);
+  transition: all 0.4s ease;
   overflow: hidden;
   &[data-isopen="false"] {
-    transform: translate(0px, 0);
+    transform: translate(55%, 10vh);
+    height: 70%;
   }
   @media screen and (max-width: 768px) {
    width: 40vh;
+   transform: translate(25px, 100vh);
+   &[data-isopen="false"] {
+    transform: translate(25px, 10vh);
+    height: 70%;
+  }
   }
 `;
 const CancelBtn = styled.button`
@@ -56,6 +64,7 @@ const AppName = styled.h3`
 `;
 const MyPage = styled.footer`
   position: fixed;
+  background: ${({ theme }: { theme: any }) => theme.barColor};
   width: 100%;
   bottom: 0;
 `;

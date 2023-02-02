@@ -116,8 +116,8 @@ export default function Controls(props: Props) {
               show === true
                 ? show === true
                 : show === false
-                ? false
-                : show === true
+                  ? false
+                  : show === true
             }
           >
             구간 기록
