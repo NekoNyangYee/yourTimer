@@ -32,9 +32,11 @@ const MenuBar = styled.div`
   transform: translate(55%, 100vh);
   transition: all 0.4s ease;
   overflow: hidden;
+  opacity: 0;
   &[data-isopen="false"] {
     transform: translate(55%, 10vh);
     height: 70%;
+    opacity: 1;
   }
   @media screen and (max-width: 766px) {
    width: 40vh;
