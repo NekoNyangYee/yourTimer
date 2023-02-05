@@ -27,7 +27,7 @@ const MenuBar = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 12px;
+  border-radius: 17px;
   background: ${({ theme }: { theme: any }) => theme.barColor};
   transform: translate(55%, 100vh);
   transition: all 0.4s ease;
@@ -36,7 +36,7 @@ const MenuBar = styled.div`
     transform: translate(55%, 10vh);
     height: 70%;
   }
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 766px) {
    width: 40vh;
    transform: translate(25px, 100vh);
    &[data-isopen="false"] {
