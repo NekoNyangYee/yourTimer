@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import caculateTimer from "./CaculateTimer";
 import Controls from "./Controls";
@@ -58,18 +58,37 @@ const TimerName = styled.span`
 const LapWrap = styled.div`
   position: relative;
   width: auto;
+  height: 70%;
+  top: 10%;
+  overflow-y: scroll;
+`;
+
+const LapContainer = styled.div`
+  position: relative;
+  width: auto;
   height: auto;
-  top: 30%;
+  background: ${({ theme }: { theme: any }) => theme.barColor};
+  font-size: 20px;
+  margin: 10px;
+  @media screen and (max-width: 820px) {
+    font-size: 15px;
+  }
+
 `;
 
 const StopWatch = () => {
   const [count, setCount] = useState<number>(0);
   const [timerArray, setTimerArray] = useState<Array<number | string>>([]);
+  const [lapTimes, setLapTimes] = useState<Array<number | string>>([]);
 
   useEffect(() => {
     const timeArray: Array<number | string> = caculateTimer(count);
     setTimerArray(timeArray);
   }, [count]);
+
+  const handleSaveLapTime = () => {
+    setLapTimes([...lapTimes, count]);
+  };
 
   return (
     <ContentsArea>
@@ -83,14 +102,21 @@ const StopWatch = () => {
           <span>{timerArray[1]}</span>
           <span> : </span>
           <span>{timerArray[2]}</span>
-          <Controls setTimeinSec={setCount} />
+          <Controls setTimeinSec={setCount} saveLapTime={handleSaveLapTime} />
         </TimerWrap>
       </LeftArea>
       <RightArea>
-        <LapWrap>구간기록 준비 중..</LapWrap>
+        <LapWrap>
+          {lapTimes.map((lapTime, index) => (
+            <LapContainer key={index}>
+              <p>{caculateTimer(Number(lapTime)).join(":")}</p>
+            </LapContainer>
+          ))}
+        </LapWrap>
       </RightArea>
     </ContentsArea>
   );
 };
 
 export default StopWatch;
+
