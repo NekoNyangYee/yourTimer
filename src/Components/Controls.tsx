@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { lightTheme, darkTheme } from "../Theme/Theme";
+import React, { useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "../Theme/Theme";
 
 const BtnWrap = styled.div`
   display: block;
@@ -64,10 +64,11 @@ const LapBtn = styled.button`
 
 type Props = {
   setTimeinSec: Function;
+  saveLapTime: Function;
 };
 
-export default function Controls(props: Props) {
-  const { setTimeinSec } = props;
+const Controls = (props: Props) => {
+  const { setTimeinSec, saveLapTime } = props;
   const [intervalId, setIntervalId] = useState<number>(0);
   const [show, setShow] = useState<boolean>(true);
 
@@ -89,6 +90,11 @@ export default function Controls(props: Props) {
     setTimeinSec(0);
     setShow(show);
   };
+
+  const handleLapBtn = () => {
+    saveLapTime();
+  };
+
   return (
     <>
       <ThemeProvider theme={show ? lightTheme : darkTheme}>
@@ -112,13 +118,8 @@ export default function Controls(props: Props) {
             초기화
           </ResetBtn>
           <LapBtn
-            data-ishide={
-              show === true
-                ? show === true
-                : show === false
-                  ? false
-                  : show === true
-            }
+            onClick={handleLapBtn}
+            data-ishide={show === true ? true : false}
           >
             구간 기록
           </LapBtn>
@@ -126,4 +127,6 @@ export default function Controls(props: Props) {
       </ThemeProvider>
     </>
   );
-}
+};
+
+export default Controls;
