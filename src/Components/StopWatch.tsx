@@ -67,7 +67,7 @@ const LapContainer = styled.div`
   position: relative;
   width: auto;
   height: auto;
-  background: ${({ theme }: { theme: any }) => theme.barColor};
+  background-color: ${({ theme }: { theme: any }) => theme.startTxtColor};
   font-size: 20px;
   margin: 10px;
   @media screen and (max-width: 820px) {
@@ -102,13 +102,14 @@ const StopWatch = () => {
           <span>{timerArray[1]}</span>
           <span> : </span>
           <span>{timerArray[2]}</span>
-          <Controls setTimeinSec={setCount} saveLapTime={handleSaveLapTime} />
+          <Controls setTimeinSec={setCount} saveLapTime={handleSaveLapTime} resetLapTimes={() => setLapTimes([])} />
         </TimerWrap>
       </LeftArea>
       <RightArea>
         <LapWrap>
           {lapTimes.map((lapTime, index) => (
             <LapContainer key={index}>
+              <h2>{index + 1}번째 기록</h2>
               <p>{caculateTimer(Number(lapTime)).join(":")}</p>
             </LapContainer>
           ))}

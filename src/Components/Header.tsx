@@ -29,24 +29,36 @@ const MenuBar = styled.div`
   text-align: center;
   border-radius: 17px;
   background: ${({ theme }: { theme: any }) => theme.barColor};
-  transform: translate(55%, 100vh);
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
   transition: all 0.4s ease;
   overflow: hidden;
   opacity: 0;
+  overflow-y: scroll;
   &[data-isopen="false"] {
-    transform: translate(55%, 10vh);
     height: 70%;
     opacity: 1;
   }
   @media screen and (max-width: 766px) {
-   width: 40vh;
-   transform: translate(25px, 100vh);
-   &[data-isopen="false"] {
-    transform: translate(25px, 10vh);
-    height: 70%;
+    width: 40vh;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    &[data-isopen="false"] {
+      height: 70%;
+    }
   }
+
+  @media screen and (orientation: landscape) and (max-width: 820px) {
+    width: 70%;
+    height: 100%;
+    &[data-isopen="false"] {
+      height: 70%;
+    }
   }
 `;
+
 const CancelBtn = styled.button`
   position: relatuve;
   display: block;
@@ -65,10 +77,8 @@ const AppName = styled.h3`
   margin: 0;
 `;
 const MyPage = styled.footer`
-  position: fixed;
   background: ${({ theme }: { theme: any }) => theme.barColor};
   width: 100%;
-  bottom: 0;
 `;
 const MenuOption = styled.div`
   width: 100%;

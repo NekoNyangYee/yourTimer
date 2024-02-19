@@ -62,13 +62,14 @@ const LapBtn = styled.button`
   }
 `;
 
-type Props = {
+interface Props {
   setTimeinSec: Function;
   saveLapTime: Function;
+  resetLapTimes: Function; // 초기화 함수 추가
 };
 
 const Controls = (props: Props) => {
-  const { setTimeinSec, saveLapTime } = props;
+  const { setTimeinSec, saveLapTime, resetLapTimes } = props;
   const [intervalId, setIntervalId] = useState<number>(0);
   const [show, setShow] = useState<boolean>(true);
 
@@ -89,6 +90,7 @@ const Controls = (props: Props) => {
     clearInterval(intervalId);
     setTimeinSec(0);
     setShow(show);
+    resetLapTimes(); // 초기화 함수 호출
   };
 
   const handleLapBtn = () => {
